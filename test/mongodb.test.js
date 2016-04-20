@@ -1,6 +1,7 @@
 // This test written in mocha+should.js
 var semver = require('semver');
 var should = require('./init.js');
+var initialize = require('../lib/mongodb.js').initialize;
 
 var Superhero, User, Post, PostWithStringId, db;
 
@@ -115,6 +116,31 @@ describe('mongodb connector', function() {
         err.message.should.match(/connect ECONNREFUSED/);
         done();
       });
+    });
+
+    it('should skip connect phase (lazyConnect = true)', function(done) {
+      var ds = getDataSource({
+        host: 'localhost',
+        port: 4,
+        lazyConnect: true
+      });
+      initialize(ds, function(err) {
+        should.not.exist(err);
+        done();
+      })
+    });
+
+    it('should report connection error (lazyConnect = false)', function(done) {
+      var ds = getDataSource({
+        host: 'localhost',
+        port: 4,
+        lazyConnect: false
+      });
+      initialize(ds, function(err) {
+        (!!err).should.be.true;
+        err.message.should.match(/connect ECONNREFUSED 127.0.0.1:4/);
+        done();
+      })
     });
   });
 
