@@ -120,30 +120,27 @@ describe('mongodb connector', function() {
 
     it('should skip connect phase (lazyConnect = true)', function(done) {
       var ds = getDataSource({
-        host: 'localhost',
+        host: '127.0.0.1',
         port: 4,
-        lazyConnect: true
+        lazyConnect: true,
       });
-      initialize(ds, function(err) {
-        should.not.exist(err);
-        done();
-      })
+      initialize(ds, done);
     });
 
     it('should report connection error (lazyConnect = false)', function(done) {
       var ds = getDataSource({
-        host: 'localhost',
+        host: '127.0.0.1',
         port: 4,
-        lazyConnect: false
+        lazyConnect = false,
       });
       initialize(ds, function(err) {
-        (!!err).should.be.true;
-        err.message.should.match(/connect ECONNREFUSED 127.0.0.1:4/);
+        console.log('ERRORRRRRRR>>>>>>', err);
+        should.exist(err);
+        err.message.should.containEql('ECONNREFUSED');
         done();
-      })
+      });
     });
   });
-
 
   it('should create indexes', function(done) {
     db.automigrate('User', function() {
