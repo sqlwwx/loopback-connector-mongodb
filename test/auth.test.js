@@ -1,10 +1,46 @@
 require('./init.js');
-var ds = getDataSource({
+var ds1 = getDataSource({
   url: 'mongodb://wwx:wwx@localhost:27017/abc'
+});
+var ds2 = getDataSource({
+  host: 'localhost',
+  database: 'abc',
+  username: 'wwx',
+  password: 'wwx',
+  port: 27017
 });
 
 describe('mongodb connect with mongodb://wwx:wwx@localhost:27017/abc', function() {
-  var Customer = ds.createModel('customer', { seq: { type: Number, id: true },
+  var Customer = ds1.createModel('customer', { seq: { type: Number, id: true },
+    name: String, emails: [String], age: Number });
+
+  before(function(done) {
+    Customer.deleteAll(done);
+  });
+
+  it('should allow custom name for the id property for create', function(done) {
+    Customer.create({
+      seq: 1,
+      name: 'John1',
+      emails: ['john@x.com', 'john@y.com'],
+      age: 30,
+    }, function(err, customer) {
+      customer.seq.should.equal(1);
+      Customer.create({
+        seq: 2,
+        name: 'John2',
+        emails: ['john2@x.com', 'john2@y.com'],
+        age: 40,
+      }, function(err, customer) {
+        customer.seq.should.equal(2);
+        done(err, customer);
+      });
+    });
+  });
+});
+
+describe('mongodb connect with username,password', function() {
+  var Customer = ds1.createModel('customer', { seq: { type: Number, id: true },
     name: String, emails: [String], age: Number });
 
   before(function(done) {
