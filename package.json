@@ -1,6 +1,6 @@
 {
   "name": "loopback-connector-mongodbnext",
-  "version": "1.15.2",
+  "version": "1.15.3",
   "description": "The official MongoDB connector for the LoopBack framework.",
   "main": "index.js",
   "scripts": {
@@ -23,7 +23,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "loopback-connector": "^2.4.0",
+    "loopback-connectornext": "^2.4.0",
     "mongodb": "^2.0.35",
     "async": "^1.0.0",
     "debug": "^2.1.1"
