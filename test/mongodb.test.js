@@ -9,7 +9,7 @@ var should = require('./init.js');
 var testUtils = require('../lib/test-utils');
 var async = require('async');
 
-var GeoPoint = require('loopback-datasource-juggler').GeoPoint;
+var GeoPoint = require('loopback-datasource-jugglernext').GeoPoint;
 
 var Superhero, User, Post, PostWithStringId, db;
 

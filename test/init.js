@@ -5,7 +5,7 @@
 
 module.exports = require('should');
 
-var DataSource = require('loopback-datasource-juggler').DataSource;
+var DataSource = require('loopback-datasource-jugglernext').DataSource;
 
 var TEST_ENV = process.env.TEST_ENV || 'test';
 var config = require('rc')('loopback', { test: { mongodb: {}}})[TEST_ENV].mongodb;

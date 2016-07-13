@@ -5,7 +5,7 @@
 
 var semver = require('semver');
 var should = require('./init');
-var suite = require('loopback-datasource-juggler/test/persistence-hooks.suite.js');
+var suite = require('loopback-datasource-jugglernext/test/persistence-hooks.suite.js');
 
 var customConfig = {
   enableOptimisedfindOrCreate: false,
