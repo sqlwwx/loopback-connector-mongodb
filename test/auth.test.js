@@ -1,16 +1,16 @@
 require('./init.js');
 var ds1 = getDataSource({
-  url: 'mongodb://wwx:wwx@localhost:27017/abc'
+  url: 'mongodb://test:password@ds013956.mlab.com:13956/wwxtest'
 });
 var ds2 = getDataSource({
-  host: 'localhost',
-  database: 'abc',
-  username: 'wwx',
-  password: 'wwx',
-  port: 27017
+  host: 'ds013956.mlab.com',
+  database: 'wwxtest',
+  username: 'test',
+  password: 'password',
+  port: 13956
 });
 
-describe('mongodb connect with mongodb://wwx:wwx@localhost:27017/abc', function() {
+describe('mongodb connect with mongodb://test:password@ds013956.mlab.com:13956/wwxtest', function() {
   var Customer = ds1.createModel('customer', { seq: { type: Number, id: true },
     name: String, emails: [String], age: Number });
 
