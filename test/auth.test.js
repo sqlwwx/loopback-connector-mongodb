@@ -1,13 +1,13 @@
 require('./init.js');
 var ds1 = getDataSource({
-  url: 'mongodb://test:password@ds013956.mlab.com:13956/wwxtest'
+  url: 'mongodb://test:password@ds013956.mlab.com:13956/wwxtest',
 });
 var ds2 = getDataSource({
   host: 'ds013956.mlab.com',
   database: 'wwxtest',
   username: 'test',
   password: 'password',
-  port: 13956
+  port: 13956,
 });
 
 describe('mongodb connect with mongodb://test:password@ds013956.mlab.com:13956/wwxtest', function() {
